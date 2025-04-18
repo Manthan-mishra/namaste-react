@@ -1,74 +1,49 @@
 import React from "react";
-import ReactDOM from 'react-dom/client';
+import ReactDOM from "react-dom/client";
+import RestaurantContainer from "./components/RestaurantContainer.js";
 
+const jsxHeading = <div>This is JSX</div>;
+console.log(jsxHeading);
 
-// ****************************** making single element ******************************
+const Header = () => {
+  return (
+    <div className="header">
+      <div className="logo-image">
+        <img
+          className="logo"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbMOneNfFp7v3s6jRERn9DgBoNWBAvNLcKFw&s"
+          alt="logo"
+        />
+      </div>
+      <div className="nav-list">
+        <ul>
+          <li>Home</li>
+          <li>About</li>
+          <li>Contact</li>
+          <li>Cart</li>
+        </ul>
+      </div>
+    </div>
+  );
+};
 
-// const element = React.createElement("p", { id: "ele" }, "hello guys");
-// console.log(element);
+const Body = () => {
+  return (
+    <div className="body">
+      <RestaurantContainer />
+    </div>
+  );
+};
 
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(element);
-
-// ****************************** make complex structure *******************
-
-// const parent = React.createElement(
-//   "div",
-//   { id: "parent" },
-//   React.createElement("div", { id: "child" }, [
-//     React.createElement("h1", { id: "grandChild" }, "Hi, There!!"),
-//     React.createElement("p", { id: "grandChildSibling" }, "Myself Manthan!!"),
-//   ])
-// );
-
-// console.log(parent);
-
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(parent);
-
-// ****************************** make complex structure with sibling *******************
-
-// const parent = React.createElement(
-//   "div",
-//   { id: "parent" },
-//   React.createElement(
-//     "div",
-//     { id: "child" },
-//     React.createElement("h1", { id: "grandChild" }, "Hi, There!!"),
-//     React.createElement("p", { id: "grandChildSibling" }, "Myself Manthan!!"),
-//     React.createElement("p", { id: "grandChildSibling" }, "Myself Manthan!!"),
-//     React.createElement("p", { id: "grandChildSibling" }, "Myself Manthan!!"),
-//     React.createElement("p", { id: "grandChildSibling" }, "Myself Manthan!!"),
-//     React.createElement("p", { id: "grandChildSibling" }, "Myself Manthan!!")
-//   )
-// );
-
-// console.log(parent);
-
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(parent);
-
-
-
-
-// ****************************** more complex structure with sibling *******************
-
-const parent = React.createElement(
-  "div",
-  { id: "parent" },
-  React.createElement(
-    "div",
-    { id: "child1" },
-    React.createElement("h1", { id: "childSibling1" }, "Hi, there1"),
-    React.createElement("p", { id: "childSibling11" }, "Myself Manthan1")
-  ),
-  React.createElement(
-    "div",
-    { id: "child2" },
-    React.createElement("h1", { id: "childSibling2" }, "Hi, there2"),
-    React.createElement("p", { id: "childSibling21" }, "Myself Manthan2")
-  )
-);
+const App = () => {
+  return (
+    <div>
+      <Header />
+      <Body />
+    </div>
+  );
+};
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(parent);
+
+root.render(<App />);
