@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import RestaurantCard from "./RestaurantCard.js";
-import "../react_demo.css";
+import RestaurantCard from "../RestaurantCard/RestaurantCard.js";
+import "./RestaurantContainer.css";
 
 const dummyRestaurants = [
   {

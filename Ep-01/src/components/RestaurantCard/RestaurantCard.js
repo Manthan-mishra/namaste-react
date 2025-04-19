@@ -1,5 +1,5 @@
 import React from "react";
-import "../react_demo.css";
+import "./RestaurantCard.css";
 
 const RestaurantCard = ({ name, image, rating, deliveryTime, cuisines }) => {
   return (

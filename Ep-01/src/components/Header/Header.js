@@ -1,9 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import RestaurantContainer from "./components/RestaurantContainer.js";
-
-const jsxHeading = <div>This is JSX</div>;
-console.log(jsxHeading);
+import "./Header.css";
 
 const Header = () => {
   return (
@@ -27,23 +23,4 @@ const Header = () => {
   );
 };
 
-const Body = () => {
-  return (
-    <div className="body">
-      <RestaurantContainer />
-    </div>
-  );
-};
-
-const App = () => {
-  return (
-    <div>
-      <Header />
-      <Body />
-    </div>
-  );
-};
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(<App />);
+export default Header;
