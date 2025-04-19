@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./components/Header/Header.js";
+import { Header } from "./components/Header/Header.js";
 import Body from "./components/Body/Body.js";
 
 const jsxHeading = <div>This is JSX</div>;

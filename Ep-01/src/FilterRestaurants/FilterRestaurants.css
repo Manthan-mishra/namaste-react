@@ -1,0 +1,30 @@
+.restaurant-filters {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  
+  .restaurant-filters button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #292929;
+    background: linear-gradient(to right, #d6d5d5, #9b9a9a);
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .restaurant-filters button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  }
+  
+  .restaurant-filters .filter-active {
+    background: linear-gradient(to right, #007bff, #00c6ff);
+    color: white;
+    box-shadow: 0 4px 20px rgba(0, 123, 255, 0.4);
+  }
+  
