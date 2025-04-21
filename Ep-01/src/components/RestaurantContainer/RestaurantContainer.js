@@ -13,6 +13,8 @@ const RestaurantContainer = () => {
   const allRestraunts = useRef([]);
 
   useEffect(() => {
+    console.log("called");
+
     fetchData();
   }, []);
 
@@ -20,15 +22,13 @@ const RestaurantContainer = () => {
 
   const handleTopRated = () => {
     topRatedRef.current = !topRatedRef.current;
-    console.log("topRatedRef.current ", topRatedRef.current);
 
     if (topRatedRef.current) {
       const filtered = filteredRestaurants.filter(
-        (res) => res?.info?.avgRating >= 4.5
+        (res) => res?.info?.avgRating >= 4.4
       );
       setFilteredRestaurants(filtered);
     } else {
-      console.log("else case executed");
       // fetchData();
       setFilteredRestaurants(allRestraunts.current);
     }

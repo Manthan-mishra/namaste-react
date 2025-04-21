@@ -24,6 +24,10 @@
     display: flex;
     gap: 30px;
   }
+  .nav-list a {
+    text-decoration: none;
+    color: inherit; 
+  }
   
   .nav-list ul li {
     list-style: none;
