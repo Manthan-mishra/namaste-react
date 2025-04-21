@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import { LOGO_URL } from "../../utils/constant";
 
 export const Header = () => {
+  const [userStatus, setUserStatus] = useState("Login");
+
+  const handleLoginStatus = () => {
+    if (userStatus === "Login") setUserStatus("Logout");
+    else setUserStatus("Login");
+  };
   return (
     <div className="header">
       <div className="logo-image">
@@ -14,6 +20,7 @@ export const Header = () => {
           <li>About</li>
           <li>Contact</li>
           <li>Cart</li>
+          <button onClick={handleLoginStatus}>{userStatus}</button>
         </ul>
       </div>
     </div>
