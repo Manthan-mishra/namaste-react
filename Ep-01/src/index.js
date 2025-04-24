@@ -5,8 +5,10 @@ import App from "./App";
 import Body from "./components/Body/Body";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
+import NotFound from "./components/NotFound/NotFound";
+import RestaurantDetail from "./components/RestaurantDetail/RestaurantDetail";
 
-const router = createBrowserRouter([
+const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <App />,
@@ -23,9 +25,17 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
+      {
+        path: "/restaurant/:resId", // dynamic route
+        element: <RestaurantDetail />,
+      },
+      {
+        path: "*", // <- catch-all route
+        element: <NotFound />,
+      },
     ],
   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={router} />);
+root.render(<RouterProvider router={appRouter} />);

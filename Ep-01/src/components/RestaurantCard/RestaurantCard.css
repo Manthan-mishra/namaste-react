@@ -37,3 +37,8 @@
     color: #777;
     font-size: 0.9rem;
   }
+
+  .restaurant-card-link {
+    text-decoration: none;
+    color: inherit;
+  }

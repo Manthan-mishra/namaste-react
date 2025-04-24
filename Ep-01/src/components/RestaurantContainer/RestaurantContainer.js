@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import RestaurantCard from "../RestaurantCard/RestaurantCard.js";
 import "./RestaurantContainer.css";
 // import { DUMMY_RES } from "../../utils/mockData.js";
@@ -11,6 +12,7 @@ const RestaurantContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const topRatedRef = useRef(false);
   const allRestraunts = useRef([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log("called");
@@ -92,7 +94,7 @@ const RestaurantContainer = () => {
             .map((_, index) => <Shimmer key={index} />)
         ) : filteredRestaurants?.length > 0 ? (
           filteredRestaurants.map((res, index) => (
-            <RestaurantCard key={index} {...res} />
+            <RestaurantCard key={res.info.id} {...res} />
           ))
         ) : (
           <p className="no-results">No restaurants found.</p>
