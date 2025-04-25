@@ -5,11 +5,16 @@ import { Link } from "react-router-dom";
 
 const RestaurantCard = ({ info }) => {
   // console.log("info ", info);
-  const { id, name, cloudinaryImageId, avgRating, cuisines, sla } = info;
+  const { id, name, cloudinaryImageId, avgRating, cuisines, sla, costForTwo } =
+    info;
   const { deliveryTime } = sla;
 
   return (
-    <Link to={`/restaurant/${id}`} className="restaurant-card-link">
+    <Link
+      to={`/restaurant/${id}`}
+      state={{ cuisines, avgRating, costForTwo, cloudinaryImageId }}
+      className="restaurant-card-link"
+    >
       <div className="restaurant-card">
         <img
           className="restaurant-img"

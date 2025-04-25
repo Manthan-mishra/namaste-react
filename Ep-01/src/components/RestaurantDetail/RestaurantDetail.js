@@ -1,22 +1,64 @@
+import { useParams } from "react-router-dom";
 import "./RestaurantDetail.css";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import ShimmerRestaurantDetail from "../ShimmerUI/ShimmerResDetailUI/ShimmerResDetailUI";
+import { IMG_BASE_URL, MENU_ITEM_BASE_URL } from "../../utils/constant";
 
 const RestaurantDetail = () => {
+  const [menuItems, setMenuItems] = useState([]);
+  const [resName, setResName] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const { resId } = useParams();
+  const location = useLocation();
+  const { state } = location;
+
+  useEffect(() => {
+    fetchMenu();
+  }, []);
+
+  const fetchMenu = async () => {
+    setIsLoading(true);
+    const response = await fetch(
+      `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.45970&lng=77.02820&restaurantId=${resId}&catalog_qa=undefined&submitAction=ENTER`
+    );
+
+    const data = await response.json();
+    const realData =
+      data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+        ?.card?.itemCards;
+
+    if (realData) {
+      setMenuItems(realData);
+    } else {
+      const realData1 =
+        data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
+          ?.card?.itemCards;
+      setMenuItems(realData1);
+    }
+
+    setResName(data?.data?.cards[0]?.card?.card?.text);
+    setIsLoading(false);
+  };
+
+  if (isLoading) return <ShimmerRestaurantDetail />;
+
   return (
     <div className="restaurant-detail">
       {/* HERO SECTION */}
       <div className="hero">
         <img
-          src="https://images.unsplash.com/photo-1552566626-52f8b828add9"
+          src={`${IMG_BASE_URL}${state?.cloudinaryImageId}`}
           alt="Restaurant"
           className="hero-img"
         />
         <div className="overlay">
           <div className="hero-content">
-            <h1>The Gourmet Palace</h1>
-            <p>Indian, Continental, Chinese</p>
+            <h1>{resName}</h1>
+            <p>{state?.cuisines.join(", ")}</p>
             <div className="hero-info">
-              <span>⭐ 4.6</span>
-              <span>₹₹ - Moderate Pricing</span>
+              <span>⭐ {state?.avgRating}</span>
+              <span>{state?.costForTwo}</span>
               <span>Open Now</span>
             </div>
           </div>
@@ -40,52 +82,31 @@ const RestaurantDetail = () => {
       </div>
 
       {/* MENU */}
-      <div className="menu-preview">
-        <h2>Menu Highlights</h2>
-        <div className="menu-grid">
-          {[
-            {
-              name: "Butter Chicken",
-              desc: "Rich creamy tomato gravy with tender chicken",
-              price: "₹299",
-              img: "https://loremflickr.com/400/300/food,butter_chicken",
-            },
-            {
-              name: "Paneer Tikka Masala",
-              desc: "Spicy grilled paneer simmered in flavorful masala",
-              price: "₹249",
-              img: "https://images.unsplash.com/photo-1589308078055-ebd7a1a9e6bc",
-            },
-            {
-              name: "Mutton Biryani",
-              desc: "Fragrant basmati rice layered with juicy mutton",
-              price: "₹349",
-              img: "https://images.unsplash.com/photo-1673095859732-7e40f2c1091d",
-            },
-            {
-              name: "Veg Manchurian",
-              desc: "Crispy vegetable balls in spicy Indo-Chinese sauce",
-              price: "₹199",
-              img: "https://images.unsplash.com/photo-1589302168068-964664d93dc0",
-            },
-            {
-              name: "Choco Lava Cake",
-              desc: "Molten chocolate center with soft baked crust",
-              price: "₹149",
-              img: "https://images.unsplash.com/photo-1608219959307-968ca3b7f6ec",
-            },
-          ].map((item, index) => (
-            <div className="menu-card" key={index}>
-              <img src={item.img} alt={item.name} />
-              <div className="menu-info">
-                <h3>{item.name}</h3>
-                <p>{item.desc}</p>
-                <span className="price">{item.price}</span>
+
+      {menuItems && (
+        <div className="menu-preview">
+          <h2>Menu Highlights</h2>
+          <div className="menu-grid">
+            {menuItems.map((item) => (
+              <div className="menu-card" key={item?.card?.info?.id}>
+                <img
+                  src={`${MENU_ITEM_BASE_URL}${item?.card?.info?.imageId}`}
+                  alt={item.name}
+                />
+                <div className="menu-info">
+                  <h3>{item?.card?.info?.name}</h3>
+                  {/* <p>{item?.card?.info?.description}</p> */}
+                  <span className="price">
+                    ₹
+                    {item?.card?.info?.price / 100 ||
+                      item?.card?.info?.defaultPrice / 100}
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* REVIEWS */}
       <div className="reviews">
