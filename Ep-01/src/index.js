@@ -7,6 +7,8 @@ import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import NotFound from "./components/NotFound/NotFound";
 import RestaurantDetail from "./components/RestaurantDetail/RestaurantDetail";
+import Team from "./components/Team/Team";
+import Demo from "./components/Demo";
 
 const appRouter = createBrowserRouter([
   {
@@ -24,6 +26,20 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/team",
+        element: <Team />,
+      },
+      {
+        path: "/demo",
+        element: (
+          <Demo
+            name="manthan"
+            location="bangalore"
+            contact="manthan123@gmail.com"
+          />
+        ),
       },
       {
         path: "/restaurant/:resId",

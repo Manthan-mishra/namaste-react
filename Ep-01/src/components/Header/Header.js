@@ -36,6 +36,12 @@ export const Header = () => {
             <Link to="/contact">Contact</Link>
           </li>
           <li>
+            <Link to="/team">Team</Link>
+          </li>
+          <li>
+            <Link to="/demo">Demo</Link>
+          </li>
+          <li>
             <Link to="/cart">Cart</Link>
           </li>
           <button onClick={handleLoginStatus}>{userStatus}</button>

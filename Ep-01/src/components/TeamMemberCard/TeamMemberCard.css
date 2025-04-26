@@ -1,0 +1,71 @@
+.team-card {
+    background-color: #fff;
+    border: 2px solid #ffdab9;
+    border-radius: 16px;
+    padding: 20px;
+    width: 260px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+  }
+  
+  .team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  .team-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+  }
+  
+  .team-name {
+    font-size: 20px;
+    color: #333;
+    margin: 10px 0 5px;
+  }
+  
+  .team-role {
+    color: #a0522d;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .team-details {
+    font-size: 14px;
+    color: #555;
+    margin-top: 15px;
+    text-align: left;
+  }
+  
+  .team-details p {
+    margin: 6px 0;
+  }
+  
+  .team-link {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #8b4513;
+    font-weight: bold;
+  }
+  
+  .applause-button {
+    margin-top: 10px;
+    background-color: #ffa07a;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .applause-button:hover {
+    background-color: #ff7f50;
+  }
+  
