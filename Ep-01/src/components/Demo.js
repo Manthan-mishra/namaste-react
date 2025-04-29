@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./demo.css";
 import DemoClass from "./DemoClass";
+import DemoChild from "./DemoChild";
 
 class Demo extends React.Component {
   constructor(props) {
@@ -9,6 +10,12 @@ class Demo extends React.Component {
       count0: 0,
       count1: 1,
     };
+
+    console.log(`Parent constructor`);
+  }
+
+  componentDidMount() {
+    console.log(`Parent componentDidMount`);
   }
 
   handleInc = () => {
@@ -21,6 +28,7 @@ class Demo extends React.Component {
   render() {
     const { count0, count1 } = this.state;
     const { name, location, contact } = this.props;
+    console.log(`Parent render`);
     return (
       <>
         <div className="user-card">
@@ -31,7 +39,10 @@ class Demo extends React.Component {
           <h3>Location: {location}</h3>
           <h4>Contact: {contact}</h4>
         </div>
-        <DemoClass name={name} location={location} contact={contact} />
+        {/* <DemoClass name={name} location={location} contact={contact} /> */}
+        {/* <DemoClass name={name} location={location} contact={contact} /> */}
+        <DemoChild name="Child1" />
+        <DemoChild name="Child2" />
       </>
     );
   }
