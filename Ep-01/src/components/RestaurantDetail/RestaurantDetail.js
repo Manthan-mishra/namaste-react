@@ -6,40 +6,9 @@ import ShimmerRestaurantDetail from "../ShimmerUI/ShimmerResDetailUI/ShimmerResD
 import { IMG_BASE_URL, MENU_ITEM_BASE_URL } from "../../utils/constant";
 
 const RestaurantDetail = () => {
-  const [menuItems, setMenuItems] = useState([]);
-  const [resName, setResName] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-  const { resId } = useParams();
   const location = useLocation();
   const { state } = location;
-
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  const fetchMenu = async () => {
-    setIsLoading(true);
-    const response = await fetch(
-      `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.45970&lng=77.02820&restaurantId=${resId}&catalog_qa=undefined&submitAction=ENTER`
-    );
-
-    const data = await response.json();
-    const realData =
-      data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-        ?.card?.itemCards;
-
-    if (realData) {
-      setMenuItems(realData);
-    } else {
-      const realData1 =
-        data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
-          ?.card?.itemCards;
-      setMenuItems(realData1);
-    }
-
-    setResName(data?.data?.cards[0]?.card?.card?.text);
-    setIsLoading(false);
-  };
+  const { menuItems, resName, isLoading } = useFetchMenu(resId);
 
   if (isLoading) return <ShimmerRestaurantDetail />;
 
