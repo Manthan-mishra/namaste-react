@@ -1,26 +1,21 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useRef } from "react";
 import RestaurantCard from "../RestaurantCard/RestaurantCard.js";
 import "./RestaurantContainer.css";
-// import { DUMMY_RES } from "../../utils/mockData.js";
 import FilterRestaurants from "../FilterRestaurants/FilterRestaurants.js";
 import Shimmer from "../ShimmerUI/ShimmerRestaurantUI/ShimmerRestaurant.js";
+import useFetchRestaurant from "../../utils/hooks/useFetchRestaurant.js";
 
 const RestaurantContainer = () => {
   const [searchText, setSearchText] = useState("");
-  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+
   const topRatedRef = useRef(false);
-  const allRestraunts = useRef([]);
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log("called");
-
-    fetchData();
-  }, []);
-
-  // const handleTopRatedToggle = () => {};
+  const {
+    isLoading,
+    filteredRestaurants,
+    allRestraunts,
+    setFilteredRestaurants,
+  } = useFetchRestaurant();
 
   const handleTopRated = () => {
     topRatedRef.current = !topRatedRef.current;
@@ -31,7 +26,6 @@ const RestaurantContainer = () => {
       );
       setFilteredRestaurants(filtered);
     } else {
-      // fetchData();
       setFilteredRestaurants(allRestraunts.current);
     }
   };
@@ -51,25 +45,6 @@ const RestaurantContainer = () => {
     });
 
     setFilteredRestaurants(filtered);
-  };
-
-  const fetchData = async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.45970&lng=77.02820&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-      );
-      const data = await response.json();
-      const realData =
-        data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants;
-      setFilteredRestaurants(realData);
-      allRestraunts.current = realData;
-    } catch (err) {
-      console.error("Error fetching restaurants:", err);
-    } finally {
-      setIsLoading(false);
-    }
   };
 
   return (
@@ -93,7 +68,7 @@ const RestaurantContainer = () => {
             .fill(0)
             .map((_, index) => <Shimmer key={index} />)
         ) : filteredRestaurants?.length > 0 ? (
-          filteredRestaurants.map((res, index) => (
+          filteredRestaurants.map((res) => (
             <RestaurantCard key={res.info.id} {...res} />
           ))
         ) : (

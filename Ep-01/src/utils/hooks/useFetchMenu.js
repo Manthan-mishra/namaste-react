@@ -10,6 +10,7 @@ const useFetchMenu = (resId) => {
 
     const fetchMenu = async () => {
       setIsLoading(true);
+
       try {
         const response = await fetch(
           `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.45970&lng=77.02820&restaurantId=${resId}&catalog_qa=undefined&submitAction=ENTER`

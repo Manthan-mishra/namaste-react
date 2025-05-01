@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import ShimmerRestaurantDetail from "../ShimmerUI/ShimmerResDetailUI/ShimmerResDetailUI";
 import { IMG_BASE_URL, MENU_ITEM_BASE_URL } from "../../utils/constant";
+import useFetchMenu from "../../utils/hooks/useFetchMenu";
 
 const RestaurantDetail = () => {
   const location = useLocation();
   const { state } = location;
+  const { resId } = useParams();
   const { menuItems, resName, isLoading } = useFetchMenu(resId);
 
   if (isLoading) return <ShimmerRestaurantDetail />;

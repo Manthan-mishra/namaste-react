@@ -11,10 +11,6 @@ export const Header = () => {
     else setUserStatus("Login");
   };
 
-  useEffect(() => {
-    console.log("called");
-  });
-
   return (
     <div className="header">
       <div className="logo-image">
