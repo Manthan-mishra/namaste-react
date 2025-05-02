@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Header.css";
 import { LOGO_URL } from "../../utils/constant";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../../utils/hooks/useOnlineStatus";
 
 export const Header = () => {
   const [userStatus, setUserStatus] = useState("Login");
@@ -10,6 +11,8 @@ export const Header = () => {
     if (userStatus === "Login") setUserStatus("Logout");
     else setUserStatus("Login");
   };
+
+  const { onlineStatus } = useOnlineStatus();
 
   return (
     <div className="header">
@@ -20,6 +23,10 @@ export const Header = () => {
       </div>
       <div className="nav-list">
         <ul>
+          <li className="online-status">
+            Online Status:{" "}
+            <span className="emoji">{onlineStatus ? "✅" : "❌"}</span>
+          </li>
           <li>
             <Link to="/" style={{ textDecoration: "none" }}>
               Home
@@ -39,6 +46,9 @@ export const Header = () => {
           </li>
           <li>
             <Link to="/cart">Cart</Link>
+          </li>
+          <li>
+            <Link to="/grocery">Grocery</Link>
           </li>
           <button onClick={handleLoginStatus}>{userStatus}</button>
         </ul>

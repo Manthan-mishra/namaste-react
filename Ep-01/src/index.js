@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
@@ -9,6 +9,10 @@ import NotFound from "./components/NotFound/NotFound";
 import RestaurantDetail from "./components/RestaurantDetail/RestaurantDetail";
 import Team from "./components/Team/Team";
 import Demo from "./components/Demo";
+import GroceryShimmer from "./components/ShimmerUI/ShimmerGroceryPage/GroceryShimmer";
+// import GroceryPage from "./components/GroceryPage/GroceryPage";
+
+const GroceryPage = lazy(() => import("./components/GroceryPage/GroceryPage"));
 
 const appRouter = createBrowserRouter([
   {
@@ -44,6 +48,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:resId",
         element: <RestaurantDetail />,
+      },
+      {
+        path: "/grocery",
+        element: (
+          <Suspense fallback={<GroceryShimmer />}>
+            <GroceryPage />
+          </Suspense>
+        ),
       },
       {
         path: "*", // <- catch-all route

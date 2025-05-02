@@ -7,12 +7,12 @@ import OfflinePage from "./components/OfflinePage/OfflinePage.js";
 const App = () => {
   const { onlineStatus } = useOnlineStatus();
 
-  if (onlineStatus === false) return <OfflinePage />;
+  // if (onlineStatus === false) return <OfflinePage />;
 
   return (
     <div>
       <Header />
-      <Outlet />
+      {onlineStatus ? <Outlet /> : <OfflinePage />}
     </div>
   );
 };

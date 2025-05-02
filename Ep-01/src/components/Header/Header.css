@@ -119,3 +119,43 @@
     max-width: 200px;
   }
 }
+
+/* Online Status Style */
+.nav-list ul li.online-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: #28a745;
+  position: relative;
+  animation: pulseGlow 2s infinite;
+}
+
+.nav-list ul li.online-status .emoji {
+  font-size: 1.2rem;
+  animation: bounceEmoji 1.5s infinite;
+}
+
+/* Glowing Pulse Animation */
+@keyframes pulseGlow {
+  0% {
+    text-shadow: 0 0 4px #28a745;
+  }
+  50% {
+    text-shadow: 0 0 12px #28a745, 0 0 20px #28a745;
+  }
+  100% {
+    text-shadow: 0 0 4px #28a745;
+  }
+}
+
+/* Bouncing Emoji Animation */
+@keyframes bounceEmoji {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
