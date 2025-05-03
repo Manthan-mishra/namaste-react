@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { IMAGE_CATEGORY } from "../constant";
 
 const useFetchMenu = (resId) => {
   const [menuItems, setMenuItems] = useState([]);
@@ -17,14 +18,19 @@ const useFetchMenu = (resId) => {
         );
 
         const data = await response.json();
+        console.log("data ", data);
+
         const regularCards =
           data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
 
-        let realData =
-          regularCards?.[2]?.card?.card?.itemCards ||
-          regularCards?.[1]?.card?.card?.itemCards;
+        const mainData = regularCards.filter((regularCard) => {
+          return regularCard?.card?.card?.["@type"] === IMAGE_CATEGORY;
+        });
+        // let realData =
+        //   regularCards?.[2]?.card?.card?.itemCards ||
+        //   regularCards?.[1]?.card?.card?.itemCards;
 
-        setMenuItems(realData || []);
+        setMenuItems(mainData || []);
         setResName(data?.data?.cards[0]?.card?.card?.text || "");
       } catch (err) {
         console.error("Failed to fetch menu:", err);

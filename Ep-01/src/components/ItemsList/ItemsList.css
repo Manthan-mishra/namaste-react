@@ -1,0 +1,26 @@
+.items-list {
+    margin-top: 10px;
+  }
+  
+  .item-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .item-card img {
+    width: 100px;
+    height: auto;
+    border-radius: 6px;
+    margin-left: 20px;
+  }
+  
+  .item-card div {
+    flex: 1;
+  }
+
+ 

@@ -47,6 +47,8 @@ const RestaurantContainer = () => {
     setFilteredRestaurants(filtered);
   };
 
+  console.log("filteredRestaurants ", filteredRestaurants);
+
   return (
     <div className="restaurant-container-wrapper">
       <div className="search-bar">

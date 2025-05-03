@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import ShimmerRestaurantDetail from "../ShimmerUI/ShimmerResDetailUI/ShimmerResDetailUI";
 import { IMG_BASE_URL, MENU_ITEM_BASE_URL } from "../../utils/constant";
 import useFetchMenu from "../../utils/hooks/useFetchMenu";
+import MenuContainer from "../MenuContainer/MenuContainer";
 
 const RestaurantDetail = () => {
   const location = useLocation();
@@ -54,7 +55,7 @@ const RestaurantDetail = () => {
 
       {/* MENU */}
 
-      {menuItems && (
+      {/* {menuItems && (
         <div className="menu-preview">
           <h2>Menu Highlights</h2>
           <div className="menu-grid">
@@ -66,7 +67,7 @@ const RestaurantDetail = () => {
                 />
                 <div className="menu-info">
                   <h3>{item?.card?.info?.name}</h3>
-                  {/* <p>{item?.card?.info?.description}</p> */}
+                 
                   <span className="price">
                     ₹
                     {item?.card?.info?.price / 100 ||
@@ -77,7 +78,8 @@ const RestaurantDetail = () => {
             ))}
           </div>
         </div>
-      )}
+      )} */}
+      <MenuContainer menuCategories={menuItems} />
 
       {/* REVIEWS */}
       <div className="reviews">
