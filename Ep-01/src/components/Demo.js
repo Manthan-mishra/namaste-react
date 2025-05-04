@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./demo.css";
 import DemoClass from "./DemoClass";
 import DemoChild from "./DemoChild";
+import UserContext from "../context/UserContext";
 
 class Demo extends React.Component {
   constructor(props) {
@@ -32,6 +33,9 @@ class Demo extends React.Component {
     return (
       <>
         <div className="user-card">
+          <UserContext.Consumer>
+            {(data) => <h1>{data.loggedInUser}</h1>}
+          </UserContext.Consumer>
           <h1>Count: {count0}</h1>
           <h5>Count: {count1}</h5>
           <button onClick={this.handleInc}>Click to increase</button>

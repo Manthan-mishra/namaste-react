@@ -18,7 +18,6 @@ const useFetchMenu = (resId) => {
         );
 
         const data = await response.json();
-        console.log("data ", data);
 
         const regularCards =
           data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
@@ -26,9 +25,6 @@ const useFetchMenu = (resId) => {
         const mainData = regularCards.filter((regularCard) => {
           return regularCard?.card?.card?.["@type"] === IMAGE_CATEGORY;
         });
-        // let realData =
-        //   regularCards?.[2]?.card?.card?.itemCards ||
-        //   regularCards?.[1]?.card?.card?.itemCards;
 
         setMenuItems(mainData || []);
         setResName(data?.data?.cards[0]?.card?.card?.text || "");
