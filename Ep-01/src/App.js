@@ -4,6 +4,8 @@ import { Outlet } from "react-router-dom";
 import useOnlineStatus from "./utils/hooks/useOnlineStatus.js";
 import OfflinePage from "./components/OfflinePage/OfflinePage.js";
 import UserContext from "./context/UserContext.js";
+import appStore from "./redux/appStore.js";
+import { Provider } from "react-redux";
 
 const App = () => {
   const { onlineStatus } = useOnlineStatus();
@@ -11,12 +13,14 @@ const App = () => {
   // if (onlineStatus === false) return <OfflinePage />;
 
   return (
-    <UserContext.Provider value={{ loggedInUser: "manthan" }}>
-      <div>
-        <Header />
-        {onlineStatus ? <Outlet /> : <OfflinePage />}
-      </div>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: "manthan" }}>
+        <div>
+          <Header />
+          {onlineStatus ? <Outlet /> : <OfflinePage />}
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
