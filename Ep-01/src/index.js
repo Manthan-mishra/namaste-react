@@ -10,6 +10,7 @@ import RestaurantDetail from "./components/RestaurantDetail/RestaurantDetail";
 import Team from "./components/Team/Team";
 import Demo from "./components/Demo";
 import GroceryShimmer from "./components/ShimmerUI/ShimmerGroceryPage/GroceryShimmer";
+import CartPage from "./components/CartPage/CartPage";
 // import GroceryPage from "./components/GroceryPage/GroceryPage";
 
 const GroceryPage = lazy(() => import("./components/GroceryPage/GroceryPage"));
@@ -34,6 +35,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/team",
         element: <Team />,
+      },
+      {
+        path: "/cart",
+        element: <CartPage />,
       },
       {
         path: "/demo",

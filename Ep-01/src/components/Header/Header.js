@@ -4,16 +4,19 @@ import { LOGO_URL } from "../../utils/constant";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../../utils/hooks/useOnlineStatus";
 import UserContext from "../../context/UserContext";
+import { useSelector } from "react-redux";
 
 export const Header = () => {
   const [userStatus, setUserStatus] = useState("Login");
+
+  const cartItems = useSelector((state) => state.cart.items);
 
   const handleLoginStatus = () => {
     if (userStatus === "Login") setUserStatus("Logout");
     else setUserStatus("Login");
   };
 
-  const { loggedInUser } = useContext(UserContext);
+  const loggedInUser = useSelector((state) => state.auth.userName);
 
   const { onlineStatus } = useOnlineStatus();
 
@@ -47,8 +50,13 @@ export const Header = () => {
           <li>
             <Link to="/demo">Demo</Link>
           </li>
-          <li>
-            <Link to="/cart">Cart</Link>
+          <li className="cart-link">
+            <Link to="/cart">
+              Cart
+              {!!cartItems.length && (
+                <span className="cart-badge">{cartItems?.length}</span>
+              )}
+            </Link>
           </li>
           <li>
             <Link to="/grocery">Grocery</Link>

@@ -159,3 +159,36 @@
   }
 }
 
+
+/* Cart Badge Wrapper */
+.cart-link {
+  position: relative;
+}
+
+/* Cart Badge Style */
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -20px;
+  background-color: #ff3b3f;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+  animation: popBadge 0.3s ease-in-out;
+}
+
+/* Small pop animation when badge appears */
+@keyframes popBadge {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
